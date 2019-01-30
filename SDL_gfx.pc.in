@@ -5,8 +5,8 @@ includedir=@includedir@
 
 Name: SDL_gfx
 Description: drawing and graphical effects extension for SDL
-Version: @VERSION@
-Requires: sdl >= @SDL_VERSION@
+Version: @SDL_gfx_VERSION_MAJOR@.@SDL_gfx_VERSION_MINOR@
+Requires: sdl >= @PKG_SDL2_VERSION@
 Libs: -L${libdir} -lSDL_gfx
-Cflags: -I${includedir}/SDL
+Cflags: -I${includedir}/SDL2
 

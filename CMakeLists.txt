@@ -8,6 +8,17 @@ set(ENV{PKG_CONFIG_PATH} "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig/")
 include(FindPkgConfig)
 pkg_check_modules(PKG_SDL2 REQUIRED sdl2)
 
+if(NOT (WINDOWS OR CYGWIN))
+  set(prefix ${CMAKE_INSTALL_PREFIX})
+  set(exec_prefix "\${prefix}")
+  set(libdir "\${exec_prefix}/lib${LIB_SUFFIX}")
+  set(bindir "\${exec_prefix}/bin")
+  set(includedir "\${prefix}/include")
+endif()
+
+configure_file("${SDL_gfx_SOURCE_DIR}/SDL_gfx.pc.in" "${SDL_gfx_BINARY_DIR}/SDL_gfx.pc" @ONLY)
+
+
 include_directories (${PKG_SDL2_INCLUDE_DIRS})
 link_directories(${PKG_SDL2_LIBRARY_DIRS})
 
@@ -19,3 +30,13 @@ target_link_libraries (SDL_gfx ${PKG_SDL2IMAGE_LIBRARIES} )
 
 install (TARGETS SDL_gfx DESTINATION lib)
 install (FILES ${INCLUDE_FILES} DESTINATION include/SDL2)
+
+if(NOT (WINDOWS OR CYGWIN))
+  if(FREEBSD)
+    # FreeBSD uses ${PREFIX}/libdata/pkgconfig
+    install(FILES ${SDL_gfx_BINARY_DIR}/SDL_gfx.pc DESTINATION "libdata/pkgconfig")
+  else()
+    install(FILES ${SDL_gfx_BINARY_DIR}/SDL_gfx.pc
+      DESTINATION "lib${LIB_SUFFIX}/pkgconfig")
+  endif()
+endif()
