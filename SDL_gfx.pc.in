@@ -3,10 +3,10 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: SDL_gfx
+Name: SDL_gfx3
 Description: drawing and graphical effects extension for SDL
 Version: @SDL_gfx_VERSION_MAJOR@.@SDL_gfx_VERSION_MINOR@
 Requires: sdl >= @PKG_SDL2_VERSION@
-Libs: -L${libdir} -lSDL_gfx
+Libs: -L${libdir} -lSDL_gfx3
 Cflags: -I${includedir}/SDL2
 
