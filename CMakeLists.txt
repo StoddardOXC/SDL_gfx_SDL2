@@ -13,7 +13,7 @@ set(libdir "\${exec_prefix}/lib${LIB_SUFFIX}")
 set(bindir "\${exec_prefix}/bin")
 set(includedir "\${prefix}/include")
 
-configure_file("${SDL_gfx_SOURCE_DIR}/SDL_gfx.pc.in" "${SDL_gfx_BINARY_DIR}/SDL_gfx3.pc" @ONLY)
+configure_file("${SDL_gfx3_SOURCE_DIR}/SDL_gfx.pc.in" "${SDL_gfx3_BINARY_DIR}/SDL_gfx3.pc" @ONLY)
 
 include_directories (${PKG_SDL2_INCLUDE_DIRS})
 link_directories(${PKG_SDL2_LIBRARY_DIRS})
@@ -30,9 +30,9 @@ install (FILES ${INCLUDE_FILES} DESTINATION include/SDL2)
 if(NOT (WINDOWS OR CYGWIN))
   if(FREEBSD)
     # FreeBSD uses ${PREFIX}/libdata/pkgconfig
-    install(FILES ${SDL_gfx_BINARY_DIR}/SDL_gfx3.pc DESTINATION "libdata/pkgconfig")
+    install(FILES ${SDL_gfx3_BINARY_DIR}/SDL_gfx3.pc DESTINATION "libdata/pkgconfig")
   else()
-    install(FILES ${SDL_gfx_BINARY_DIR}/SDL_gfx3.pc
+    install(FILES ${SDL_gfx3_BINARY_DIR}/SDL_gfx3.pc
       DESTINATION "lib${LIB_SUFFIX}/pkgconfig")
   endif()
 endif()
